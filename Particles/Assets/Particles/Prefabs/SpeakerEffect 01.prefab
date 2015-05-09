@@ -11,7 +11,7 @@ GameObject:
   - 198: {fileID: 19848472}
   - 199: {fileID: 19980174}
   m_Layer: 0
-  m_Name: SpeakerEffect
+  m_Name: SpeakerEffect 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
