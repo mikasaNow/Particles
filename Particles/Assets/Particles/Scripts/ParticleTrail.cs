@@ -9,7 +9,6 @@ public class ParticleTrail : MonoBehaviour
     public float interpolateLength = 0.2f;
 
     private List<Vector3> points_ = new List<Vector3>();
-
     public List<Vector3> points
     {
         get { return points_; }
