@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Particles\Scripts\ParticleShowerController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Editor\HanaFubukiControllerInspector.cs">
     <Files>
-      <File FileName="Assets\Particles\Scripts\ParticleShowerController.cs" Line="10" Column="28" />
-      <File FileName="Assets\Particles\Scripts\ParticleTrail.cs" Line="15" Column="32" />
+      <File FileName="Assets\Particles\Scripts\ParticleTrail.cs" Line="14" Column="32" />
+      <File FileName="Assets\Particles\Scripts\HanaFubukiController.cs" Line="23" Column="1" />
+      <File FileName="Assets\Editor\HanaFubukiControllerInspector.cs" Line="32" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

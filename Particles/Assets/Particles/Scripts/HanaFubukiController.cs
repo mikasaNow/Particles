@@ -2,30 +2,63 @@
 using System.Collections.Generic;
 using UnityEditor;
 
+
+public enum SimulationSpace
+{
+    World = 0,
+    Local = 1
+}
+
 public class HanaFubukiController : MonoBehaviour
 {
 
 	public List<ParticleSystem> particleList = new List<ParticleSystem>();
+	public float rotationSpeed;
+	public float tolalParticleNum;
 
-    public int startLifeTimeMin;
-    public int startLifeTimeMax;
-    public float starSpeed;
-    public float startSize;
-    public float startRotation;
+	// MainModule
+	public bool mainModule;
 
-    public float emissionRate;
-    public float rotationSpeed;
-    public int tolalParticleNum;
-    public int a;
-    public int b;
+	public float startLifeTimeMin;
+    public float startLifeTimeMax;
 
-    private float beforeEmissionRate;
+	public float startSpeedMin;
+    public float startSpeedMax;
+
+    public float startSizeMin;
+    public float startSizeMax;
+    
+    public float startRotationMin;
+    public float startRotationMax;
+
+    public Color startColor;
+
+    public float gravityModifier;
+
+    public float inheritVelocity;
+
+    public SimulationSpace simulationSpace;
+
+    public bool playOnAwake;
+
+    public float maxParticles;
+
+
+
+
+	// EmissionModule
+	public bool emissionModule;
+	public float emissionRate;
+	
+	private float beforeEmissionRate;
+
 	void Start () {
 	}
 	
 
 	void Update () {
-        tolalParticleNum = 0;
+
+        // emissionRate更新
         if (emissionRate != beforeEmissionRate)
         {
             foreach (ParticleSystem p in particleList)
@@ -37,10 +70,31 @@ public class HanaFubukiController : MonoBehaviour
             }
         }
 
+        // 総パーティクル
+        tolalParticleNum = 0;
         foreach (ParticleSystem p in particleList)
         {
             tolalParticleNum += p.particleCount;
         }
+
+
+        // work start
+        /*
+        switch (simulationSpace)
+        {
+            case SimulationSpace.World:
+                Debug.Log("World");
+                break;
+
+            case SimulationSpace.Local:
+                Debug.Log("Local");
+                break;
+
+            default:
+                break;
+        }
+        */
+        // work end
 
 	}
 }
