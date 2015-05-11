@@ -2,24 +2,27 @@
 using System.Collections.Generic;
 using UnityEditor;
 
-
+/*
 public enum SimulationSpace
 {
     World = 0,
     Local = 1
 }
+*/
 
 public class HanaFubukiController : MonoBehaviour
 {
 
 	public List<ParticleSystem> particleList = new List<ParticleSystem>();
-	public float rotationSpeed;
-	public float tolalParticleNum;
+	public float tolalParticleNum = 0;
+    public float rotationSpeed = 0;
 
 	// MainModule
-	public bool mainModule;
+	public bool mainModule = true;
+    public int maxParticles = 0;
 
-	public float startLifeTimeMin;
+    /*
+    public float startLifeTimeMin;
     public float startLifeTimeMax;
 
 	public float startSpeedMin;
@@ -40,17 +43,13 @@ public class HanaFubukiController : MonoBehaviour
     public SimulationSpace simulationSpace;
 
     public bool playOnAwake;
-
-    public float maxParticles;
-
+    */
 
 
-
-	// EmissionModule
+    // EmissionModule
 	public bool emissionModule;
 	public float emissionRate;
 	
-	private float beforeEmissionRate;
 
 	void Start () {
 	}
@@ -58,16 +57,10 @@ public class HanaFubukiController : MonoBehaviour
 
 	void Update () {
 
-        // emissionRate更新
-        if (emissionRate != beforeEmissionRate)
+        // 吹出口回転
+        foreach (ParticleSystem p in particleList)
         {
-            foreach (ParticleSystem p in particleList)
-            {
-                p.transform.Rotate(new Vector3(0, rotationSpeed, 0), Space.World);
-                p.emissionRate = emissionRate;
-                beforeEmissionRate = emissionRate;
-                //Debug.Log(p.name + ":" + p.particleCount);
-            }
+            p.transform.Rotate(new Vector3(0, rotationSpeed, 0), Space.World);
         }
 
         // 総パーティクル
@@ -76,25 +69,5 @@ public class HanaFubukiController : MonoBehaviour
         {
             tolalParticleNum += p.particleCount;
         }
-
-
-        // work start
-        /*
-        switch (simulationSpace)
-        {
-            case SimulationSpace.World:
-                Debug.Log("World");
-                break;
-
-            case SimulationSpace.Local:
-                Debug.Log("Local");
-                break;
-
-            default:
-                break;
-        }
-        */
-        // work end
-
 	}
 }
