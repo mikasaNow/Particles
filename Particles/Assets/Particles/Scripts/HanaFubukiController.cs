@@ -14,16 +14,18 @@ public class HanaFubukiController : MonoBehaviour
 {
 
 	public List<ParticleSystem> particleList = new List<ParticleSystem>();
-	public float tolalParticleNum = 0;
-    public float rotationSpeed = 0;
+	public float tolalParticleNum;
+    public float rotationSpeed;
+
 
 	// MainModule
-	public bool mainModule = true;
-    public int maxParticles = 0;
+	public bool mainModule;
+    public int maxParticles;
 
     /*
     public float startLifeTimeMin;
     public float startLifeTimeMax;
+    public AnimationCurve startLifeTimeAni;
 
 	public float startSpeedMin;
     public float startSpeedMax;
@@ -52,6 +54,8 @@ public class HanaFubukiController : MonoBehaviour
 	
 
 	void Start () {
+
+
 	}
 	
 

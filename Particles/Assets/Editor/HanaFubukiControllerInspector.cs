@@ -2,7 +2,7 @@
 using UnityEditor;
 
 
-/*
+
 enum StartLifetime
 {
     Constant = 0,
@@ -10,23 +10,26 @@ enum StartLifetime
     RandomBetweenTwoConstants = 2,
     RandomBetweenTwoCurve = 3
 }
- */
+
 
 
 [CustomEditor(typeof(HanaFubukiController))]
 public class HanaFubukiControllerInspector : Editor
 {
-    
-    //StartLifetime slt;
+
+
+    StartLifetime slt;
 
     public override void OnInspectorGUI()
     {
-        HanaFubukiController obj = target as HanaFubukiController;
+        HanaFubukiController obj = (HanaFubukiController)target;
 
         // 総Particle数
-        EditorGUILayout.FloatField("TolalParticleNum", obj.tolalParticleNum);
-        // 吹出口
-        EditorGUILayout.FloatField("RotationSpeed", obj.rotationSpeed);
+        EditorGUI.BeginDisabledGroup(true);
+        obj.tolalParticleNum = EditorGUILayout.FloatField("TolalParticleNum", obj.tolalParticleNum);
+        EditorGUI.EndDisabledGroup();
+        // 回転速度
+        obj.rotationSpeed = EditorGUILayout.Slider("RotationSpeed", obj.rotationSpeed, -10.0f, 10.0f);
         EditorGUILayout.Space();
 
         // パーティクル一覧
@@ -38,13 +41,42 @@ public class HanaFubukiControllerInspector : Editor
         {
             serializedObject.ApplyModifiedProperties();
         }
+
         // MainModule
         obj.mainModule = EditorGUILayout.Foldout(obj.mainModule, "Main");
         if (obj.mainModule == true)
         {
             // MaxParticles
             obj.maxParticles = EditorGUILayout.IntField("MaxParticles", obj.maxParticles);
+
+            /*
+            // StartLifeTime
+            float startLife;
+            EditorGUILayout.BeginHorizontal();
+            //EditorGUILayout.PrefixLabel(" ");
+            EditorGUILayout.PrefixLabel("StartLifeTime");
+            switch (slt)
+            {
+                case StartLifetime.Constant:
+                    startLife = EditorGUILayout.FloatField(obj.startLifeTimeMin);
+                    break;
+                case StartLifetime.Curve:
+                    Rect r;
+                    obj.startLifeTimeAni = EditorGUILayout.CurveField("StartLifeTime", obj.startLifeTimeAni);
+
+                    break;
+                case StartLifetime.RandomBetweenTwoConstants:
+                    obj.startLifeTimeMin = EditorGUILayout.FloatField(obj.startLifeTimeMin);
+                    obj.startLifeTimeMax = EditorGUILayout.FloatField(obj.startLifeTimeMax);
+                    break;
+                case StartLifetime.RandomBetweenTwoCurve:
+                    break;
+            }
+            slt = (StartLifetime)EditorGUILayout.EnumPopup(slt, GUILayout.Width(15));
+            EditorGUILayout.EndHorizontal();
+            */
         }
+
 
         // EmissionModule
         obj.emissionModule = EditorGUILayout.Foldout(obj.emissionModule, "Emission");
@@ -54,10 +86,10 @@ public class HanaFubukiControllerInspector : Editor
         }
 
         // パーティクルに反映
-        foreach (ParticleSystem p in obj.particleList)
+        foreach (ParticleSystem ps in obj.particleList)
         {
-            p.emissionRate = obj.emissionRate;
-            p.maxParticles = obj.maxParticles;
+            ps.maxParticles = obj.maxParticles;
+            ps.emissionRate = obj.emissionRate;            
         }
 
 
@@ -131,7 +163,7 @@ public class HanaFubukiControllerInspector : Editor
         */
 
 
-        //EditorUtility.SetDirty(target);
+        EditorUtility.SetDirty(target);
 
 
     }
